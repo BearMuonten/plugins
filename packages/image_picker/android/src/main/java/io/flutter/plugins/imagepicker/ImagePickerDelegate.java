@@ -314,7 +314,7 @@ public class ImagePickerDelegate
   private void launchPickImageFromGalleryIntent() {
     Intent pickImageIntent = new Intent(Intent.ACTION_GET_CONTENT);
     pickImageIntent.setType("image/*");
-    if (pickVideoIntent.resolveActivity(activity.getPackageManager()) != null) {
+    if (pickImageIntent.resolveActivity(activity.getPackageManager()) != null) {
       activity.startActivityForResult(pickImageIntent, REQUEST_CODE_CHOOSE_IMAGE_FROM_GALLERY);
     } else {
       Toast.makeText(activity, "Grallery Error", Toast.LENGTH_SHORT).show();
