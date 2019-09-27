@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import android.widget.Toast;
 
 /**
  * A delegate class doing the heavy lifting for the plugin.
@@ -252,10 +253,10 @@ public class ImagePickerDelegate
     Intent pickVideoIntent = new Intent(Intent.ACTION_GET_CONTENT);
     pickVideoIntent.setType("video/*");
 
-    if (pickVideoIntent.resolveActivity(getPackageManager()) != null) {
+    if (pickVideoIntent.resolveActivity(activity.getPackageManager()) != null) {
       activity.startActivityForResult(pickVideoIntent, REQUEST_CODE_CHOOSE_VIDEO_FROM_GALLERY);
     } else {
-      
+      Toast.makeText(activity, "Video Error", Toast.LENGTH_SHORT).show();
     }
 
   }
@@ -313,8 +314,12 @@ public class ImagePickerDelegate
   private void launchPickImageFromGalleryIntent() {
     Intent pickImageIntent = new Intent(Intent.ACTION_GET_CONTENT);
     pickImageIntent.setType("image/*");
+    if (pickVideoIntent.resolveActivity(activity.getPackageManager()) != null) {
+      activity.startActivityForResult(pickImageIntent, REQUEST_CODE_CHOOSE_IMAGE_FROM_GALLERY);
+    } else {
+      Toast.makeText(activity, "Grallery Error", Toast.LENGTH_SHORT).show();
+    }
 
-    activity.startActivityForResult(pickImageIntent, REQUEST_CODE_CHOOSE_IMAGE_FROM_GALLERY);
   }
 
   public void takeImageWithCamera(MethodCall methodCall, MethodChannel.Result result) {
