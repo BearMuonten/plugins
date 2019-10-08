@@ -49,6 +49,9 @@ class ImageResizer {
   private File resizedImage(String path, Double maxWidth, Double maxHeight, int imageQuality)
       throws IOException {
     Bitmap bmp = BitmapFactory.decodeFile(path);
+    if(bmp==null){
+      return null;
+    }
     double originalWidth = bmp.getWidth() * 1.0;
     double originalHeight = bmp.getHeight() * 1.0;
 
