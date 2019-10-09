@@ -21,6 +21,7 @@ import io.flutter.plugin.platform.PlatformView;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import android.graphics.Color;
 
 public class FlutterWebView implements PlatformView, MethodCallHandler {
   private static final String JS_CHANNEL_NAMES_FIELD = "javascriptChannelNames";
@@ -48,6 +49,7 @@ public class FlutterWebView implements PlatformView, MethodCallHandler {
     platformThreadHandler = new Handler(context.getMainLooper());
     // Allow local storage.
     webView.getSettings().setDomStorageEnabled(true);
+    webView.setBackgroundColor(Color.TRANSPARENT);
 
     methodChannel = new MethodChannel(messenger, "plugins.flutter.io/webview_" + id);
     methodChannel.setMethodCallHandler(this);
